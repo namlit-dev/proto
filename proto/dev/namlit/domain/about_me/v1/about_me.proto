@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.domain.about_me.v1;
+
+// High-level "about me" introduction block.
+message AboutMeDto {
+  string introduction = 1;
+}
+
+// Narrative details outside technical background.
+message AboutMeBeyondCodeDto {
+  string travelling_text = 1;
+  string hobbies_text = 2;
+}
+
+// Structured personal basics section.
+message AboutMeTheBasicsDto {
+  string text = 1;
+  // Stored as timestamp for compatibility; interpreted as a calendar date by clients.
+  google.protobuf.Timestamp birthday = 2;
+  string siblings = 3;
+  string nationality = 4;
+  string from_location = 5;
+  string degree = 6;
+  string current_role = 7;
+  string specialization = 8;
+  string experience = 9;
+}
+
+// Description of preferred collaboration and delivery style.
+message AboutMeWorkStyleDto {
+  string text = 1;
+}

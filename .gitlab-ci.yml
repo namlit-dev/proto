@@ -1,0 +1,13 @@
+stages:
+  - public_publish
+
+include:
+  - component: ${CI_SERVER_FQDN}/thenamlit_website/ci-public-release-components/public-release@1.2.1
+    inputs:
+      script_project_path: thenamlit_website/ci-public-release-components
+      allowed_github_owner: namlit-dev
+      stage: public_publish
+      source_main_branch: main
+      public_default_branch: main
+      release_tag_regex: '^v[0-9]+\.[0-9]+\.[0-9]+$'
+      publish_mode: manual

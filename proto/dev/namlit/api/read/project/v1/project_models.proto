@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/project/v1/project.proto";
+
+package dev.namlit.api.read.project.v1;
+
+// List projection for project overview pages.
+message ProjectOverviewView {
+  repeated dev.namlit.domain.project.v1.ProjectOverviewItemDto projects = 1;
+}
+
+// Detail projection for a single project page.
+message ProjectView {
+  dev.namlit.domain.project.v1.ProjectDto project = 1;
+  repeated dev.namlit.domain.project.v1.ProjectPostDto posts = 2;
+  dev.namlit.domain.project.v1.ProjectNavigationDto navigation = 3;
+  dev.namlit.domain.project.v1.ProjectTechstackDto techstack = 4;
+}

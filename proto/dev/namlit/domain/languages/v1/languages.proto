@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package dev.namlit.domain.languages.v1;
+
+// Root language aggregate.
+message LanguagesDto {
+  repeated LanguagesItemDto items = 1;
+}
+
+// One language entry with free-form proficiency details.
+message LanguagesItemDto {
+  string id = 1;
+  string name = 2;
+  string proficiency = 3;
+  string schools_and_courses = 4;
+  string more_details = 5;
+}

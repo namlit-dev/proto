@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/resume_download/v1/resume_download.proto";
+
+package dev.namlit.api.read.resume_download.v1;
+
+// Read-model projection for resume download options.
+message ResumeDownloadView {
+  dev.namlit.domain.resume_download.v1.ResumeDownloadDto resume_download = 1;
+}

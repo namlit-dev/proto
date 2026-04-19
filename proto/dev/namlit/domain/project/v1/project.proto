@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.domain.project.v1;
+
+// Top-level project entity.
+message ProjectDto {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string project_type = 4;
+  string description = 5;
+  // True when at least one techstack item is connected to this project.
+  bool has_techstack = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// Collection of project overview items.
+message ProjectOverviewDto {
+  repeated ProjectOverviewItemDto projects = 1;
+}
+
+// Lightweight project representation for list views.
+message ProjectOverviewItemDto {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string project_type = 4;
+  string description = 5;
+  bool has_techstack = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// Intro text block for a project detail page.
+message ProjectIntroductionDto {
+  string project_id = 1;
+  string text = 2;
+}
+
+// Project content post linked into navigation nodes.
+message ProjectPostDto {
+  string id = 1;
+  string name = 2;
+  string project_id = 3;
+  string text = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// Navigation tree root for a project.
+message ProjectNavigationDto {
+  string project_id = 1;
+  string project_name = 2;
+  string project_slug = 3;
+  repeated ProjectNavigationNodeDto nodes = 4;
+}
+
+// Hierarchical navigation node for pages/sections.
+message ProjectNavigationNodeDto {
+  string id = 1;
+  string name = 2;
+  string project_id = 3;
+  string slug = 4;
+  // Materialized path used by clients for routing/breadcrumbs.
+  string path = 5;
+  optional string parent_id = 6;
+  ProjectNavigationNodeTypeDto node_type = 7;
+  optional string post_id = 8;
+  repeated ProjectNavigationNodeDto children = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+// Node type used by project navigation rendering and validation.
+enum ProjectNavigationNodeTypeDto {
+  // Default proto value; should not be persisted as a business value.
+  PROJECT_NAVIGATION_NODE_TYPE_DTO_UNSPECIFIED = 0;
+  PROJECT_NAVIGATION_NODE_TYPE_DTO_PAGE = 1;
+  PROJECT_NAVIGATION_NODE_TYPE_DTO_SECTION = 2;
+}
+
+// Techstack projection scoped to a project.
+message ProjectTechstackDto {
+  string project_id = 1;
+  string project_slug = 2;
+  repeated ProjectTechstackCategoryDto categories = 3;
+}
+
+// Project-specific view of a techstack category.
+message ProjectTechstackCategoryDto {
+  string id = 1;
+  string name = 2;
+  repeated ProjectTechstackCategoryCollectionDto collections = 3;
+  repeated ProjectTechstackCategoryItemDto additional_items = 4;
+}
+
+// Named grouping inside a techstack category.
+message ProjectTechstackCategoryCollectionDto {
+  string id = 1;
+  string name = 2;
+  string category_id = 3;
+  repeated ProjectTechstackCategoryItemDto items = 4;
+}
+
+// Techstack item linked to a project.
+message ProjectTechstackCategoryItemDto {
+  string id = 1;
+  string name = 2;
+  string category_id = 3;
+  optional string collection_id = 4;
+}
+
+// Techstack snippet attached to project overview cards.
+message ProjectOverviewItemTechstackDto {
+  string project_slug = 1;
+  repeated ProjectOverviewItemTechstackCategoryItemDto techstack_items = 2;
+}
+
+// Minimal techstack item shown in project overviews.
+message ProjectOverviewItemTechstackCategoryItemDto {
+  string id = 1;
+  string name = 2;
+}

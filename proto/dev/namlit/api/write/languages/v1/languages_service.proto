@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/languages/v1/languages_commands.proto";
+import "dev/namlit/domain/languages/v1/languages.proto";
+
+package dev.namlit.api.write.languages.v1;
+
+// Mutation API for language content.
+service LanguagesWriteService {
+  rpc UpsertLanguages(UpsertLanguagesRequest) returns (UpsertLanguagesResponse);
+}
+
+message UpsertLanguagesRequest {
+  UpsertLanguagesCommand command = 1;
+}
+
+message UpsertLanguagesResponse {
+  dev.namlit.domain.languages.v1.LanguagesDto languages = 1;
+}

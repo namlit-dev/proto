@@ -1,0 +1,57 @@
+# Rust generated files
+rust_proto/target/
+rust_proto/Cargo.lock
+
+# Build artifacts
+**/target/
+**/*.pdb
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Other IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Future TypeScript/Node.js files
+ts_proto/node_modules/
+ts_proto/dist/
+ts_proto/generated/
+*.tsbuildinfo
+
+# Future Python files
+python_proto/__pycache__/
+python_proto/build/
+python_proto/dist/
+python_proto/*.egg-info/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

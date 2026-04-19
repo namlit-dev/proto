@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.domain.techstack.v1;
+
+// Root techstack navigation tree.
+message TechstackNavigationDto {
+  repeated TechstackNavigationNodeDto nodes = 1;
+}
+
+// Navigation node for techstack pages and sections.
+message TechstackNavigationNodeDto {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  // Materialized path used for routing and breadcrumbs.
+  string path = 4;
+  optional string parent_id = 5;
+  TechstackNavigationNodeTypeDto node_type = 6;
+  optional string category_id = 7;
+  repeated TechstackNavigationNodeDto children = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+// Supported navigation node categories.
+enum TechstackNavigationNodeTypeDto {
+  // Default proto value; should not be persisted as a business value.
+  TECHSTACK_NAVIGATION_NODE_TYPE_DTO_UNSPECIFIED = 0;
+  TECHSTACK_NAVIGATION_NODE_TYPE_DTO_PAGE = 1;
+  TECHSTACK_NAVIGATION_NODE_TYPE_DTO_SECTION = 2;
+}
+
+// Category of related techstack items.
+message TechstackCategoryDto {
+  string id = 1;
+  string name = 2;
+  repeated TechstackCategoryCollectionDto collections = 3;
+  repeated TechstackCategoryItemDto additional_items = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// Optional named subgroup inside a category.
+message TechstackCategoryCollectionDto {
+  string id = 1;
+  string name = 2;
+  string category_id = 3;
+  repeated TechstackCategoryItemDto items = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// Atomic techstack item with optional references to related domain entities.
+message TechstackCategoryItemDto {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string category_id = 4;
+  optional string collection_id = 5;
+  repeated TechstackCategoryItemConnectedJobDto jobs = 6;
+  repeated TechstackCategoryItemConnectedProjectDto projects = 7;
+  repeated TechstackCategoryItemConnectedSchoolDto schools = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+// Lightweight relation to a work-history job.
+message TechstackCategoryItemConnectedJobDto {
+  string id = 1;
+  string name = 2;
+}
+
+// Lightweight relation to a project.
+message TechstackCategoryItemConnectedProjectDto {
+  string id = 1;
+  string name = 2;
+  string project_slug = 3;
+}
+
+// Lightweight relation to an education entry.
+message TechstackCategoryItemConnectedSchoolDto {
+  string id = 1;
+  string name = 2;
+  string href = 3;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/work_history/v1/work_history.proto";
+
+package dev.namlit.api.read.work_history.v1;
+
+// Read-model projection for work history content.
+message WorkHistoryView {
+  dev.namlit.domain.work_history.v1.WorkHistoryDto work_history = 1;
+}

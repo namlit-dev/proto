@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "dev/namlit/common/v1/location.proto";
+import "dev/namlit/common/v1/timeframe.proto";
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.domain.work_history.v1;
+
+// Root work-history aggregate.
+message WorkHistoryDto {
+  repeated WorkHistoryJobDto jobs = 1;
+}
+
+// Employer or organization entry with nested positions.
+message WorkHistoryJobDto {
+  string id = 1;
+  string name = 2;
+  WorkHistoryJobWorkTypeDto work_type = 3;
+  optional string website_url = 4;
+  repeated WorkHistoryJobPositionDto positions = 5;
+  // Aggregated timeframe over contained positions when available.
+  optional dev.namlit.common.v1.TimeframeDto timeframe = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  repeated WorkHistoryJobTechstackCategoryItemDto techstack_items = 9;
+}
+
+// Coarse-grained domain category for a work-history job.
+enum WorkHistoryJobWorkTypeDto {
+  // Default proto value; callers should provide a concrete work type.
+  WORK_HISTORY_JOB_WORK_TYPE_DTO_UNSPECIFIED = 0;
+  WORK_HISTORY_JOB_WORK_TYPE_DTO_IT = 1;
+  WORK_HISTORY_JOB_WORK_TYPE_DTO_HOSPITALITY = 2;
+  WORK_HISTORY_JOB_WORK_TYPE_DTO_PROFESSIONAL_SELF_DEVELOPMENT = 3;
+}
+
+// Role/position entry inside a job.
+message WorkHistoryJobPositionDto {
+  string id = 1;
+  string job_id = 2;
+  string name = 3;
+  string description = 4;
+  dev.namlit.common.v1.LocationDto location = 5;
+  dev.namlit.common.v1.TimeframeDto timeframe = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// Minimal techstack item projection linked to a job.
+message WorkHistoryJobTechstackCategoryItemDto {
+  string id = 1;
+  string name = 2;
+}

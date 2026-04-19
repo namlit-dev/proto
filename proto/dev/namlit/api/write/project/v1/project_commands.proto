@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/project/v1/project.proto";
+
+package dev.namlit.api.write.project.v1;
+
+// Command payload for creating a project.
+message CreateProjectDto {
+  string name = 1;
+  string slug = 2;
+  // Optional classification label shown to end users.
+  optional string project_type = 3;
+  string description = 4;
+}
+
+// Command payload for updating only the project description.
+message UpdateProjectDescriptionDto {
+  string description = 1;
+}
+
+// Command payload for creating a project post.
+message CreateProjectPostDto {
+  string name = 1;
+  string text = 2;
+}
+
+// Command payload for updating only a post body.
+message UpdateProjectPostTextDto {
+  string text = 1;
+}
+
+// Command payload for creating a project navigation node.
+message CreateProjectNavigationNodeDto {
+  string name = 1;
+  string slug = 2;
+  // Optional parent node; omit for top-level nodes.
+  optional string parent_id = 3;
+  dev.namlit.domain.project.v1.ProjectNavigationNodeTypeDto node_type = 4;
+  // Optional post link for page-like nodes.
+  optional string post_id = 5;
+}
+
+// Command payload for attaching/changing/removing a post on a node.
+message UpdateProjectNavigationNodePostIdDto {
+  // Set to null to detach a post from the node.
+  optional string post_id = 1;
+}
+
+// Command payload for creating a project-techstack relation.
+message ConnectProjectAndTechstackDto {
+  // Controls whether this relation is surfaced in overview projections.
+  bool show_in_project_overview = 1;
+}
+
+// Command payload for toggling overview visibility on an existing relation.
+message UpdateShowTechstackCategoryItemInProjectOverviewDto {
+  bool show_in_project_overview = 1;
+}

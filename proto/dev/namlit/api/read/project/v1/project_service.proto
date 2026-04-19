@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/project/v1/project_models.proto";
+
+package dev.namlit.api.read.project.v1;
+
+// Read-only API for project list and project detail pages.
+service ProjectReadService {
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+  rpc GetProject(GetProjectRequest) returns (GetProjectResponse);
+}
+
+message ListProjectsRequest {}
+
+message ListProjectsResponse {
+  // List projection used by project overview screens.
+  ProjectOverviewView payload = 1;
+}
+
+message GetProjectRequest {
+  // Stable project identifier from ProjectDto.id.
+  string project_id = 1;
+}
+
+message GetProjectResponse {
+  // Detail projection for a single project.
+  ProjectView payload = 1;
+}

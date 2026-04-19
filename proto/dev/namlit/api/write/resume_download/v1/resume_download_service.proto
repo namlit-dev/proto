@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/resume_download/v1/resume_download_commands.proto";
+import "dev/namlit/domain/resume_download/v1/resume_download.proto";
+
+package dev.namlit.api.write.resume_download.v1;
+
+// Mutation API for resume download configuration.
+service ResumeDownloadWriteService {
+  rpc UpsertResumeDownload(UpsertResumeDownloadRequest) returns (UpsertResumeDownloadResponse);
+}
+
+message UpsertResumeDownloadRequest {
+  UpsertResumeDownloadCommand command = 1;
+}
+
+message UpsertResumeDownloadResponse {
+  dev.namlit.domain.resume_download.v1.ResumeDownloadDto resume_download = 1;
+}

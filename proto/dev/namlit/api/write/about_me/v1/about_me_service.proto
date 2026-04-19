@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/about_me/v1/about_me_commands.proto";
+import "dev/namlit/domain/about_me/v1/about_me.proto";
+
+package dev.namlit.api.write.about_me.v1;
+
+// Mutation API for About Me sections.
+service AboutMeWriteService {
+  rpc UpsertAboutMe(UpsertAboutMeRequest) returns (UpsertAboutMeResponse);
+  rpc UpsertAboutMeTheBasics(UpsertAboutMeTheBasicsRequest) returns (UpsertAboutMeTheBasicsResponse);
+  rpc UpsertAboutMeBeyondCode(UpsertAboutMeBeyondCodeRequest) returns (UpsertAboutMeBeyondCodeResponse);
+  rpc UpsertAboutMeWorkStyle(UpsertAboutMeWorkStyleRequest) returns (UpsertAboutMeWorkStyleResponse);
+}
+
+message UpsertAboutMeRequest {
+  UpsertAboutMeCommand command = 1;
+}
+
+message UpsertAboutMeResponse {
+  dev.namlit.domain.about_me.v1.AboutMeDto about_me = 1;
+}
+
+message UpsertAboutMeTheBasicsRequest {
+  UpsertAboutMeTheBasicsCommand command = 1;
+}
+
+message UpsertAboutMeTheBasicsResponse {
+  dev.namlit.domain.about_me.v1.AboutMeTheBasicsDto the_basics = 1;
+}
+
+message UpsertAboutMeBeyondCodeRequest {
+  UpsertAboutMeBeyondCodeCommand command = 1;
+}
+
+message UpsertAboutMeBeyondCodeResponse {
+  dev.namlit.domain.about_me.v1.AboutMeBeyondCodeDto beyond_code = 1;
+}
+
+message UpsertAboutMeWorkStyleRequest {
+  UpsertAboutMeWorkStyleCommand command = 1;
+}
+
+message UpsertAboutMeWorkStyleResponse {
+  dev.namlit.domain.about_me.v1.AboutMeWorkStyleDto work_style = 1;
+}

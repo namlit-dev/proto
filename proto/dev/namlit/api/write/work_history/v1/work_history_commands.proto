@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "dev/namlit/common/v1/location.proto";
+import "dev/namlit/common/v1/timeframe.proto";
+import "dev/namlit/domain/work_history/v1/work_history.proto";
+
+package dev.namlit.api.write.work_history.v1;
+
+// Command payload for creating a work-history job.
+message CreateWorkHistoryJobDto {
+  string name = 1;
+  dev.namlit.domain.work_history.v1.WorkHistoryJobWorkTypeDto work_type = 2;
+  optional string website_url = 3;
+}
+
+// Command payload for creating a position under a job.
+message CreateWorkHistoryJobPositionDto {
+  string name = 1;
+  string description = 2;
+  dev.namlit.common.v1.LocationDto location = 3;
+  dev.namlit.common.v1.TimeframeDto timeframe = 4;
+}
+
+// Command payload for creating a job-techstack relation.
+message ConnectWorkHistoryJobAndTechstackDto {
+  // Controls whether this relation is surfaced in work-history projections.
+  bool show_in_work_history = 1;
+}
+
+// Command payload for toggling visibility on an existing relation.
+message UpdateShowTechstackCategoryItemInWorkHistoryDto {
+  bool show_in_work_history = 1;
+}

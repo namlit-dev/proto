@@ -1,0 +1,37 @@
+[package]
+name = "rust_proto"
+version = "0.1.0"
+edition = "2024"
+description = "Protocol buffer definitions for Namlit services"
+
+[dependencies]
+tonic = "0.14"
+tonic-prost = "0.14"
+prost = "0.14.1"
+serde = { version = "1.0", features = ["derive"] }
+prost-types = "0.14.1"
+prost-wkt-types = "0.7.0"
+
+[build-dependencies]
+tonic-prost-build = "0.14"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+
+[features]
+default = []
+
+# gRPC code generation toggles
+grpc_server = []
+grpc_client = []
+
+# Schema bundles
+bundle_domain = []
+bundle_api_read = ["bundle_domain"]
+bundle_api_write = ["bundle_domain"]
+bundle_cache_invalidation = []
+
+# Runtime-oriented convenience bundles
+bundle_db_api_server = ["grpc_server", "bundle_api_read", "bundle_api_write"]
+bundle_db_api_client = ["grpc_client", "bundle_api_read", "bundle_api_write"]
+bundle_cache_api_server = ["grpc_server", "bundle_api_read"]
+bundle_cache_to_db_client = ["grpc_client", "bundle_api_read"]

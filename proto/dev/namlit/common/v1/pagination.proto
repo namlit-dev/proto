@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package dev.namlit.common.v1;
+
+// Client-supplied pagination request.
+message PaginationRequestDto {
+  uint32 page = 1;
+  uint32 page_size = 2;
+}
+
+// Pagination metadata paired with paged responses.
+message PaginationInfoDto {
+  uint32 page = 1;
+  uint32 page_size = 2;
+  uint32 total_count = 3;
+}

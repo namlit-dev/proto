@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/project/v1/project_commands.proto";
+import "dev/namlit/domain/project/v1/project.proto";
+
+package dev.namlit.api.write.project.v1;
+
+// Mutation API for project content, navigation, and techstack links.
+service ProjectWriteService {
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+  rpc UpdateProjectDescription(UpdateProjectDescriptionRequest) returns (UpdateProjectDescriptionResponse);
+  rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse);
+
+  rpc CreateProjectPost(CreateProjectPostRequest) returns (CreateProjectPostResponse);
+  rpc UpdateProjectPostText(UpdateProjectPostTextRequest) returns (UpdateProjectPostTextResponse);
+  rpc DeleteProjectPost(DeleteProjectPostRequest) returns (DeleteProjectPostResponse);
+
+  rpc CreateProjectNavigationNode(CreateProjectNavigationNodeRequest) returns (CreateProjectNavigationNodeResponse);
+  rpc UpdateProjectNavigationNodePostId(UpdateProjectNavigationNodePostIdRequest) returns (UpdateProjectNavigationNodePostIdResponse);
+  rpc DeleteProjectNavigationNode(DeleteProjectNavigationNodeRequest) returns (DeleteProjectNavigationNodeResponse);
+
+  rpc ConnectProjectAndTechstack(ConnectProjectAndTechstackRequest) returns (ConnectProjectAndTechstackResponse);
+  rpc UpdateShowTechstackCategoryItemInProjectOverview(UpdateShowTechstackCategoryItemInProjectOverviewRequest) returns (UpdateShowTechstackCategoryItemInProjectOverviewResponse);
+  rpc DisconnectProjectAndTechstack(DisconnectProjectAndTechstackRequest) returns (DisconnectProjectAndTechstackResponse);
+}
+
+message CreateProjectRequest {
+  CreateProjectDto project = 1;
+}
+
+message CreateProjectResponse {
+  dev.namlit.domain.project.v1.ProjectDto project = 1;
+}
+
+message UpdateProjectDescriptionRequest {
+  // Stable project identifier from ProjectDto.id.
+  string project_id = 1;
+  UpdateProjectDescriptionDto update = 2;
+}
+
+message UpdateProjectDescriptionResponse {
+  dev.namlit.domain.project.v1.ProjectDto project = 1;
+}
+
+message DeleteProjectRequest {
+  // Stable project identifier from ProjectDto.id.
+  string project_id = 1;
+}
+
+message DeleteProjectResponse {}
+
+message CreateProjectPostRequest {
+  // Target project identifier.
+  string project_id = 1;
+  CreateProjectPostDto post = 2;
+}
+
+message CreateProjectPostResponse {
+  dev.namlit.domain.project.v1.ProjectPostDto post = 1;
+}
+
+message UpdateProjectPostTextRequest {
+  // Stable post identifier from ProjectPostDto.id.
+  string post_id = 1;
+  UpdateProjectPostTextDto update = 2;
+}
+
+message UpdateProjectPostTextResponse {
+  dev.namlit.domain.project.v1.ProjectPostDto post = 1;
+}
+
+message DeleteProjectPostRequest {
+  // Stable post identifier from ProjectPostDto.id.
+  string post_id = 1;
+}
+
+message DeleteProjectPostResponse {}
+
+message CreateProjectNavigationNodeRequest {
+  // Target project identifier.
+  string project_id = 1;
+  CreateProjectNavigationNodeDto node = 2;
+}
+
+message CreateProjectNavigationNodeResponse {
+  dev.namlit.domain.project.v1.ProjectNavigationNodeDto node = 1;
+}
+
+message UpdateProjectNavigationNodePostIdRequest {
+  // Stable navigation node identifier.
+  string node_id = 1;
+  UpdateProjectNavigationNodePostIdDto update = 2;
+}
+
+message UpdateProjectNavigationNodePostIdResponse {
+  dev.namlit.domain.project.v1.ProjectNavigationNodeDto node = 1;
+}
+
+message DeleteProjectNavigationNodeRequest {
+  // Stable navigation node identifier.
+  string node_id = 1;
+}
+
+message DeleteProjectNavigationNodeResponse {}
+
+message ConnectProjectAndTechstackRequest {
+  // Stable project identifier.
+  string project_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+  ConnectProjectAndTechstackDto connection = 3;
+}
+
+message ConnectProjectAndTechstackResponse {
+  dev.namlit.domain.project.v1.ProjectTechstackDto techstack = 1;
+}
+
+message UpdateShowTechstackCategoryItemInProjectOverviewRequest {
+  // Stable project identifier.
+  string project_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+  UpdateShowTechstackCategoryItemInProjectOverviewDto update = 3;
+}
+
+message UpdateShowTechstackCategoryItemInProjectOverviewResponse {
+  dev.namlit.domain.project.v1.ProjectTechstackDto techstack = 1;
+}
+
+message DisconnectProjectAndTechstackRequest {
+  // Stable project identifier.
+  string project_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+}
+
+message DisconnectProjectAndTechstackResponse {}

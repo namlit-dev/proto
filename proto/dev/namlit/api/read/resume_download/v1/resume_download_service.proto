@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/resume_download/v1/resume_download_models.proto";
+
+package dev.namlit.api.read.resume_download.v1;
+
+// Read-only API for resume download metadata.
+service ResumeDownloadReadService {
+  rpc GetResumeDownload(GetResumeDownloadRequest) returns (GetResumeDownloadResponse);
+}
+
+message GetResumeDownloadRequest {}
+
+message GetResumeDownloadResponse {
+  // Resume download projection with all configured variants.
+  ResumeDownloadView payload = 1;
+}

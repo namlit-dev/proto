@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/about_me/v1/about_me.proto";
+
+package dev.namlit.api.read.about_me.v1;
+
+// Read-model projection for the About Me page.
+message AboutMeView {
+  dev.namlit.domain.about_me.v1.AboutMeDto about_me = 1;
+  dev.namlit.domain.about_me.v1.AboutMeTheBasicsDto the_basics = 2;
+  dev.namlit.domain.about_me.v1.AboutMeBeyondCodeDto beyond_code = 3;
+  dev.namlit.domain.about_me.v1.AboutMeWorkStyleDto work_style = 4;
+}

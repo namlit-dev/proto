@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/contact/v1/contact.proto";
+
+package dev.namlit.api.write.contact.v1;
+
+// Command payload for upserting contact information.
+message UpsertContactCommand {
+  dev.namlit.domain.contact.v1.ContactDto contact = 1;
+}

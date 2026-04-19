@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package dev.namlit.domain.resume_download.v1;
+
+// Resume download section with selectable output variants.
+message ResumeDownloadDto {
+  string description = 1;
+  repeated ResumeDownloadItemDto items = 2;
+}
+
+// One downloadable resume variant.
+message ResumeDownloadItemDto {
+  string id = 1;
+  // Value expected in public query parameters to select this variant.
+  string query_param_value = 2;
+  string label = 3;
+  string pdf_url = 4;
+  string pdf_download_url = 5;
+  string pdf_preview_url = 6;
+  string pdf_file_name = 7;
+}

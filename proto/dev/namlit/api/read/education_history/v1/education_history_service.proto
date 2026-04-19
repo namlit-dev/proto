@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/education_history/v1/education_history_models.proto";
+
+package dev.namlit.api.read.education_history.v1;
+
+// Read-only API for education history.
+service EducationHistoryReadService {
+  rpc GetEducationHistory(GetEducationHistoryRequest) returns (GetEducationHistoryResponse);
+}
+
+message GetEducationHistoryRequest {}
+
+message GetEducationHistoryResponse {
+  // Fully assembled education history read model.
+  EducationHistoryView payload = 1;
+}

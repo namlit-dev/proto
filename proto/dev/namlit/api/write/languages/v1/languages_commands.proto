@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/languages/v1/languages.proto";
+
+package dev.namlit.api.write.languages.v1;
+
+// Command payload for replacing/upserting language content.
+message UpsertLanguagesCommand {
+  dev.namlit.domain.languages.v1.LanguagesDto languages = 1;
+}

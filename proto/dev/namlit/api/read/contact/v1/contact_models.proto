@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/contact/v1/contact.proto";
+
+package dev.namlit.api.read.contact.v1;
+
+// Read-model projection for the contact page.
+message ContactView {
+  dev.namlit.domain.contact.v1.ContactDto contact = 1;
+}

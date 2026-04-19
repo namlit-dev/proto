@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.common.v1;
+
+// Time range with explicit precision so partial dates can be represented.
+message TimeframeDto {
+  google.protobuf.Timestamp start_date = 1;
+  // Precision of start_date (year/month/day).
+  TimeframePrecisionDto start_date_precision = 2;
+  // Omitted for open-ended ranges (for example "present").
+  optional google.protobuf.Timestamp end_date = 3;
+  // Should be set when end_date is present.
+  optional TimeframePrecisionDto end_date_precision = 4;
+}
+
+// Granularity attached to timeframe date points.
+enum TimeframePrecisionDto {
+  // Default proto value; callers should provide an explicit precision.
+  TIMEFRAME_PRECISION_DTO_UNSPECIFIED = 0;
+  TIMEFRAME_PRECISION_DTO_YEAR = 1;
+  TIMEFRAME_PRECISION_DTO_MONTH = 2;
+  TIMEFRAME_PRECISION_DTO_DAY = 3;
+}

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "dev/namlit/common/v1/location.proto";
+
+package dev.namlit.domain.contact.v1;
+
+// Public contact section shown in profile surfaces.
+message ContactDto {
+  string text = 1;
+  string email = 2;
+  ContactAvailabilityDto availability = 3;
+  ContactSocialsDto socials = 4;
+  dev.namlit.common.v1.LocationDto location = 5;
+}
+
+// Availability marker used for contact expectations.
+message ContactAvailabilityDto {
+  ContactAvailabilityStatusDto status = 1;
+  string description = 2;
+}
+
+// Coarse-grained availability state.
+enum ContactAvailabilityStatusDto {
+  // Default proto value; should be normalized before publishing.
+  CONTACT_AVAILABILITY_STATUS_DTO_UNSPECIFIED = 0;
+  CONTACT_AVAILABILITY_STATUS_DTO_GREEN = 1;
+  CONTACT_AVAILABILITY_STATUS_DTO_YELLOW = 2;
+  CONTACT_AVAILABILITY_STATUS_DTO_RED = 3;
+}
+
+// Social profile links rendered in contact cards.
+message ContactSocialsDto {
+  string linkedin = 1;
+  string instagram = 2;
+  string facebook = 3;
+  string github = 4;
+  string gitlab = 5;
+}

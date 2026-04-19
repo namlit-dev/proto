@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/contact/v1/contact_models.proto";
+
+package dev.namlit.api.read.contact.v1;
+
+// Read-only API for contact information.
+service ContactReadService {
+  rpc GetContact(GetContactRequest) returns (GetContactResponse);
+}
+
+message GetContactRequest {}
+
+message GetContactResponse {
+  // Fully assembled contact read model.
+  ContactView payload = 1;
+}

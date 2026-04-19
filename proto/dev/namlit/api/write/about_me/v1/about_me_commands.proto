@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/about_me/v1/about_me.proto";
+
+package dev.namlit.api.write.about_me.v1;
+
+// Command payload for updating the high-level about-me section.
+message UpsertAboutMeCommand {
+  dev.namlit.domain.about_me.v1.AboutMeDto about_me = 1;
+}
+
+// Command payload for updating the basics section.
+message UpsertAboutMeTheBasicsCommand {
+  dev.namlit.domain.about_me.v1.AboutMeTheBasicsDto the_basics = 1;
+}
+
+// Command payload for updating beyond-code details.
+message UpsertAboutMeBeyondCodeCommand {
+  dev.namlit.domain.about_me.v1.AboutMeBeyondCodeDto beyond_code = 1;
+}
+
+// Command payload for updating work-style details.
+message UpsertAboutMeWorkStyleCommand {
+  dev.namlit.domain.about_me.v1.AboutMeWorkStyleDto work_style = 1;
+}

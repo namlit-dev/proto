@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/techstack/v1/techstack_models.proto";
+
+package dev.namlit.api.read.techstack.v1;
+
+// Read-only API for techstack category and navigation content.
+service TechstackReadService {
+  rpc GetTechstack(GetTechstackRequest) returns (GetTechstackResponse);
+}
+
+message GetTechstackRequest {}
+
+message GetTechstackResponse {
+  // Fully assembled techstack read model.
+  TechstackView payload = 1;
+}

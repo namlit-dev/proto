@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package dev.namlit.common.v1;
+
+// Reusable location descriptor for profile, work, and education entities.
+message LocationDto {
+  string country = 1;
+  optional string province = 2;
+  optional string city = 3;
+  // Optional map deep-link for clients that render "open in maps" actions.
+  optional string maps_url = 4;
+  // Optional IANA timezone identifier such as "Europe/Berlin".
+  optional string timezone = 5;
+}

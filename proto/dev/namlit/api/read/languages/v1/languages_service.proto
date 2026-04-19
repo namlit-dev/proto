@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/languages/v1/languages_models.proto";
+
+package dev.namlit.api.read.languages.v1;
+
+// Read-only API for languages content.
+service LanguagesReadService {
+  rpc GetLanguages(GetLanguagesRequest) returns (GetLanguagesResponse);
+}
+
+message GetLanguagesRequest {}
+
+message GetLanguagesResponse {
+  // Fully assembled languages read model.
+  LanguagesView payload = 1;
+}

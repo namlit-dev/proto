@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.api.write.cache_invalidation.v1;
+
+// Event contract used to fan out cache invalidation signals across services.
+message CacheInvalidationEventDto {
+  // Cache keys to invalidate atomically for this event.
+  repeated string keys = 1;
+  // UTC time when the invalidation event was emitted.
+  google.protobuf.Timestamp timestamp = 2;
+}

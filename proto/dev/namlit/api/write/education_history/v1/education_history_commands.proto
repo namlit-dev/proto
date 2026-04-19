@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "dev/namlit/common/v1/location.proto";
+import "dev/namlit/common/v1/timeframe.proto";
+import "dev/namlit/domain/education_history/v1/education_history.proto";
+
+package dev.namlit.api.write.education_history.v1;
+
+// Command payload for creating an education school/institution.
+message CreateEducationHistorySchoolDto {
+  string name = 1;
+  dev.namlit.domain.education_history.v1.EducationHistorySchoolTypeDto school_type = 2;
+  optional string website_url = 3;
+}
+
+// Command payload for creating an education chapter inside a school.
+message CreateEducationHistorySchoolChapterDto {
+  string name = 1;
+  optional string field_of_study = 2;
+  string description = 3;
+  dev.namlit.common.v1.LocationDto location = 4;
+  dev.namlit.common.v1.TimeframeDto timeframe = 5;
+}

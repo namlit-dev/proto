@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/work_history/v1/work_history_commands.proto";
+import "dev/namlit/domain/work_history/v1/work_history.proto";
+
+package dev.namlit.api.write.work_history.v1;
+
+// Mutation API for work-history jobs, positions, and techstack links.
+service WorkHistoryWriteService {
+  rpc CreateWorkHistoryJob(CreateWorkHistoryJobRequest) returns (CreateWorkHistoryJobResponse);
+  rpc DeleteWorkHistoryJob(DeleteWorkHistoryJobRequest) returns (DeleteWorkHistoryJobResponse);
+
+  rpc CreateWorkHistoryJobPosition(CreateWorkHistoryJobPositionRequest) returns (CreateWorkHistoryJobPositionResponse);
+  rpc DeleteWorkHistoryJobPosition(DeleteWorkHistoryJobPositionRequest) returns (DeleteWorkHistoryJobPositionResponse);
+
+  rpc ConnectWorkHistoryJobAndTechstack(ConnectWorkHistoryJobAndTechstackRequest) returns (ConnectWorkHistoryJobAndTechstackResponse);
+  rpc UpdateShowTechstackCategoryItemInWorkHistory(UpdateShowTechstackCategoryItemInWorkHistoryRequest) returns (UpdateShowTechstackCategoryItemInWorkHistoryResponse);
+  rpc DisconnectWorkHistoryJobAndTechstack(DisconnectWorkHistoryJobAndTechstackRequest) returns (DisconnectWorkHistoryJobAndTechstackResponse);
+}
+
+message CreateWorkHistoryJobRequest {
+  CreateWorkHistoryJobDto job = 1;
+}
+
+message CreateWorkHistoryJobResponse {
+  dev.namlit.domain.work_history.v1.WorkHistoryJobDto job = 1;
+}
+
+message DeleteWorkHistoryJobRequest {
+  // Stable job identifier from WorkHistoryJobDto.id.
+  string job_id = 1;
+}
+
+message DeleteWorkHistoryJobResponse {}
+
+message CreateWorkHistoryJobPositionRequest {
+  // Parent job identifier.
+  string job_id = 1;
+  CreateWorkHistoryJobPositionDto position = 2;
+}
+
+message CreateWorkHistoryJobPositionResponse {
+  dev.namlit.domain.work_history.v1.WorkHistoryJobPositionDto position = 1;
+}
+
+message DeleteWorkHistoryJobPositionRequest {
+  // Stable position identifier from WorkHistoryJobPositionDto.id.
+  string position_id = 1;
+}
+
+message DeleteWorkHistoryJobPositionResponse {}
+
+message ConnectWorkHistoryJobAndTechstackRequest {
+  // Stable job identifier.
+  string job_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+  ConnectWorkHistoryJobAndTechstackDto connection = 3;
+}
+
+message ConnectWorkHistoryJobAndTechstackResponse {
+  dev.namlit.domain.work_history.v1.WorkHistoryDto work_history = 1;
+}
+
+message UpdateShowTechstackCategoryItemInWorkHistoryRequest {
+  // Stable job identifier.
+  string job_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+  UpdateShowTechstackCategoryItemInWorkHistoryDto update = 3;
+}
+
+message UpdateShowTechstackCategoryItemInWorkHistoryResponse {
+  dev.namlit.domain.work_history.v1.WorkHistoryDto work_history = 1;
+}
+
+message DisconnectWorkHistoryJobAndTechstackRequest {
+  // Stable job identifier.
+  string job_id = 1;
+  // Stable techstack item identifier from TechstackCategoryItemDto.id.
+  string techstack_category_item_id = 2;
+}
+
+message DisconnectWorkHistoryJobAndTechstackResponse {}

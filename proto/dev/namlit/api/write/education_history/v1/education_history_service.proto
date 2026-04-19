@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/education_history/v1/education_history_commands.proto";
+import "dev/namlit/domain/education_history/v1/education_history.proto";
+
+package dev.namlit.api.write.education_history.v1;
+
+// Mutation API for schools and school chapters.
+service EducationHistoryWriteService {
+  rpc CreateEducationHistorySchool(CreateEducationHistorySchoolRequest) returns (CreateEducationHistorySchoolResponse);
+  rpc DeleteEducationHistorySchool(DeleteEducationHistorySchoolRequest) returns (DeleteEducationHistorySchoolResponse);
+  rpc CreateEducationHistorySchoolChapter(CreateEducationHistorySchoolChapterRequest) returns (CreateEducationHistorySchoolChapterResponse);
+  rpc DeleteEducationHistorySchoolChapter(DeleteEducationHistorySchoolChapterRequest) returns (DeleteEducationHistorySchoolChapterResponse);
+}
+
+message CreateEducationHistorySchoolRequest {
+  CreateEducationHistorySchoolDto school = 1;
+}
+
+message CreateEducationHistorySchoolResponse {
+  dev.namlit.domain.education_history.v1.EducationHistorySchoolDto school = 1;
+}
+
+message DeleteEducationHistorySchoolRequest {
+  // Stable school identifier from EducationHistorySchoolDto.id.
+  string school_id = 1;
+}
+
+message DeleteEducationHistorySchoolResponse {}
+
+message CreateEducationHistorySchoolChapterRequest {
+  // Target school identifier.
+  string school_id = 1;
+  CreateEducationHistorySchoolChapterDto chapter = 2;
+}
+
+message CreateEducationHistorySchoolChapterResponse {
+  dev.namlit.domain.education_history.v1.EducationHistorySchoolChapterDto chapter = 1;
+}
+
+message DeleteEducationHistorySchoolChapterRequest {
+  // Stable chapter identifier from EducationHistorySchoolChapterDto.id.
+  string chapter_id = 1;
+}
+
+message DeleteEducationHistorySchoolChapterResponse {}

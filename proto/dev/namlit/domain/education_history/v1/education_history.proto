@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "dev/namlit/common/v1/location.proto";
+import "dev/namlit/common/v1/timeframe.proto";
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.domain.education_history.v1;
+
+// Root education aggregate.
+message EducationHistoryDto {
+  repeated EducationHistorySchoolDto schools = 1;
+}
+
+// Education institution with nested chapters (for example degree phases).
+message EducationHistorySchoolDto {
+  string id = 1;
+  string name = 2;
+  EducationHistorySchoolTypeDto school_type = 3;
+  optional string website_url = 4;
+  repeated EducationHistorySchoolChapterDto chapters = 5;
+  optional dev.namlit.common.v1.TimeframeDto timeframe = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// Institution category used for filtering and UI badges.
+enum EducationHistorySchoolTypeDto {
+  // Default proto value; callers should send a concrete school type.
+  EDUCATION_HISTORY_SCHOOL_TYPE_DTO_UNSPECIFIED = 0;
+  EDUCATION_HISTORY_SCHOOL_TYPE_DTO_UNIVERSITY = 1;
+  EDUCATION_HISTORY_SCHOOL_TYPE_DTO_SECONDARY_SCHOOL = 2;
+  EDUCATION_HISTORY_SCHOOL_TYPE_DTO_PRIMARY_SCHOOL = 3;
+  EDUCATION_HISTORY_SCHOOL_TYPE_DTO_KINDERGARTEN = 4;
+}
+
+// School sub-entry (for example degree, chapter, or program phase).
+message EducationHistorySchoolChapterDto {
+  string id = 1;
+  string school_id = 2;
+  string name = 3;
+  optional string field_of_study = 4;
+  string description = 5;
+  dev.namlit.common.v1.LocationDto location = 6;
+  dev.namlit.common.v1.TimeframeDto timeframe = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}

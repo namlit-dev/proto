@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/work_history/v1/work_history_models.proto";
+
+package dev.namlit.api.read.work_history.v1;
+
+// Read-only API for work history content.
+service WorkHistoryReadService {
+  rpc GetWorkHistory(GetWorkHistoryRequest) returns (GetWorkHistoryResponse);
+}
+
+message GetWorkHistoryRequest {}
+
+message GetWorkHistoryResponse {
+  // Fully assembled work history read model.
+  WorkHistoryView payload = 1;
+}

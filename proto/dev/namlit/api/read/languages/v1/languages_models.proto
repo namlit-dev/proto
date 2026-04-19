@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/languages/v1/languages.proto";
+
+package dev.namlit.api.read.languages.v1;
+
+// Read-model projection for languages content.
+message LanguagesView {
+  dev.namlit.domain.languages.v1.LanguagesDto languages = 1;
+}

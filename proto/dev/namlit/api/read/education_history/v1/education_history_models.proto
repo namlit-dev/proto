@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/education_history/v1/education_history.proto";
+
+package dev.namlit.api.read.education_history.v1;
+
+// Read-model projection for education history content.
+message EducationHistoryView {
+  dev.namlit.domain.education_history.v1.EducationHistoryDto education_history = 1;
+}

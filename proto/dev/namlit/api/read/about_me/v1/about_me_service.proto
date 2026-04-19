@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "dev/namlit/api/read/about_me/v1/about_me_models.proto";
+
+package dev.namlit.api.read.about_me.v1;
+
+// Read-only API for About Me content.
+service AboutMeReadService {
+  rpc GetAboutMe(GetAboutMeRequest) returns (GetAboutMeResponse);
+}
+
+message GetAboutMeRequest {}
+
+message GetAboutMeResponse {
+  // Fully assembled About Me read model.
+  AboutMeView payload = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/techstack/v1/techstack.proto";
+
+package dev.namlit.api.read.techstack.v1;
+
+// Read-model projection for techstack page content.
+message TechstackView {
+  repeated dev.namlit.domain.techstack.v1.TechstackCategoryDto categories = 1;
+  dev.namlit.domain.techstack.v1.TechstackNavigationDto navigation = 2;
+}

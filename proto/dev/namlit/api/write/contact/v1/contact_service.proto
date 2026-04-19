@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/contact/v1/contact_commands.proto";
+import "dev/namlit/domain/contact/v1/contact.proto";
+
+package dev.namlit.api.write.contact.v1;
+
+// Mutation API for contact content.
+service ContactWriteService {
+  rpc UpsertContact(UpsertContactRequest) returns (UpsertContactResponse);
+}
+
+message UpsertContactRequest {
+  UpsertContactCommand command = 1;
+}
+
+message UpsertContactResponse {
+  dev.namlit.domain.contact.v1.ContactDto contact = 1;
+}

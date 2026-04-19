@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "dev/namlit/domain/techstack/v1/techstack.proto";
+
+package dev.namlit.api.write.techstack.v1;
+
+// Command payload for creating a category.
+message CreateTechstackCategoryDto {
+  string name = 1;
+}
+
+// Command payload for creating a category collection.
+message CreateTechstackCategoryCollectionDto {
+  string name = 1;
+}
+
+// Command payload for creating a techstack item.
+message CreateTechstackCategoryItemDto {
+  string name = 1;
+  string description = 2;
+}
+
+// Command payload for updating only an item's description.
+message UpdateTechstackCategoryItemDescriptionDto {
+  string description = 1;
+}
+
+// Command payload for creating a techstack navigation node.
+message CreateTechstackNavigationNodeDto {
+  string name = 1;
+  string slug = 2;
+  // Optional parent node; omit for top-level nodes.
+  optional string parent_id = 3;
+  dev.namlit.domain.techstack.v1.TechstackNavigationNodeTypeDto node_type = 4;
+  // Optional category link for page-like nodes.
+  optional string category_id = 5;
+}
+
+// Command payload for attaching/changing/removing a category on a node.
+message UpdateTechstackNavigationNodeCategoryIdDto {
+  // Set to null to detach any current category link.
+  optional string category_id = 1;
+}

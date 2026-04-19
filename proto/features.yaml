@@ -1,0 +1,79 @@
+version: v1
+features:
+  about_me:
+    domain:
+      - dev/namlit/domain/about_me/v1/about_me.proto
+    read_api:
+      - dev/namlit/api/read/about_me/v1/about_me_models.proto
+      - dev/namlit/api/read/about_me/v1/about_me_service.proto
+    write_api:
+      - dev/namlit/api/write/about_me/v1/about_me_commands.proto
+      - dev/namlit/api/write/about_me/v1/about_me_service.proto
+  contact:
+    domain:
+      - dev/namlit/domain/contact/v1/contact.proto
+    read_api:
+      - dev/namlit/api/read/contact/v1/contact_models.proto
+      - dev/namlit/api/read/contact/v1/contact_service.proto
+    write_api:
+      - dev/namlit/api/write/contact/v1/contact_commands.proto
+      - dev/namlit/api/write/contact/v1/contact_service.proto
+  education_history:
+    domain:
+      - dev/namlit/domain/education_history/v1/education_history.proto
+    read_api:
+      - dev/namlit/api/read/education_history/v1/education_history_models.proto
+      - dev/namlit/api/read/education_history/v1/education_history_service.proto
+    write_api:
+      - dev/namlit/api/write/education_history/v1/education_history_commands.proto
+      - dev/namlit/api/write/education_history/v1/education_history_service.proto
+  languages:
+    domain:
+      - dev/namlit/domain/languages/v1/languages.proto
+    read_api:
+      - dev/namlit/api/read/languages/v1/languages_models.proto
+      - dev/namlit/api/read/languages/v1/languages_service.proto
+    write_api:
+      - dev/namlit/api/write/languages/v1/languages_commands.proto
+      - dev/namlit/api/write/languages/v1/languages_service.proto
+  project:
+    domain:
+      - dev/namlit/domain/project/v1/project.proto
+    read_api:
+      - dev/namlit/api/read/project/v1/project_models.proto
+      - dev/namlit/api/read/project/v1/project_service.proto
+    write_api:
+      - dev/namlit/api/write/project/v1/project_commands.proto
+      - dev/namlit/api/write/project/v1/project_service.proto
+  resume_download:
+    domain:
+      - dev/namlit/domain/resume_download/v1/resume_download.proto
+    read_api:
+      - dev/namlit/api/read/resume_download/v1/resume_download_models.proto
+      - dev/namlit/api/read/resume_download/v1/resume_download_service.proto
+    write_api:
+      - dev/namlit/api/write/resume_download/v1/resume_download_commands.proto
+      - dev/namlit/api/write/resume_download/v1/resume_download_service.proto
+  techstack:
+    domain:
+      - dev/namlit/domain/techstack/v1/techstack.proto
+    read_api:
+      - dev/namlit/api/read/techstack/v1/techstack_models.proto
+      - dev/namlit/api/read/techstack/v1/techstack_service.proto
+    write_api:
+      - dev/namlit/api/write/techstack/v1/techstack_commands.proto
+      - dev/namlit/api/write/techstack/v1/techstack_service.proto
+  work_history:
+    domain:
+      - dev/namlit/domain/work_history/v1/work_history.proto
+    read_api:
+      - dev/namlit/api/read/work_history/v1/work_history_models.proto
+      - dev/namlit/api/read/work_history/v1/work_history_service.proto
+    write_api:
+      - dev/namlit/api/write/work_history/v1/work_history_commands.proto
+      - dev/namlit/api/write/work_history/v1/work_history_service.proto
+  cache_invalidation:
+    domain: []
+    read_api: []
+    write_api:
+      - dev/namlit/api/write/cache_invalidation/v1/cache_invalidation.proto

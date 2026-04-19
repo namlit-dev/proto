@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package dev.namlit.common.v1;
+
+// Canonical error payload returned by API boundaries.
+message ApiErrorDto {
+  ApiErrorCodeDto code = 1;
+  string message = 2;
+  // UTC timestamp when this error payload was produced.
+  google.protobuf.Timestamp timestamp_utc = 3;
+  // Correlation identifier propagated across service boundaries.
+  string trace_id = 4;
+  // Optional field-level violations for validation-style failures.
+  repeated ApiFieldViolationDto violations = 5;
+}
+
+// Field-level detail used by ApiErrorDto.violations.
+message ApiFieldViolationDto {
+  string field = 1;
+  string issue = 2;
+}
+
+// Stable machine-readable error classification.
+enum ApiErrorCodeDto {
+  // Default proto value; should not be emitted by successful adapters.
+  API_ERROR_CODE_DTO_UNSPECIFIED = 0;
+  API_ERROR_CODE_DTO_INVALID_REQUEST = 1;
+  API_ERROR_CODE_DTO_UNAUTHORIZED = 2;
+  API_ERROR_CODE_DTO_RESOURCE_NOT_FOUND = 3;
+  API_ERROR_CODE_DTO_UPSTREAM_UNAVAILABLE = 4;
+  API_ERROR_CODE_DTO_UPSTREAM_TIMEOUT = 5;
+  API_ERROR_CODE_DTO_INTERNAL = 6;
+}

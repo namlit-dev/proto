@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+import "dev/namlit/api/write/techstack/v1/techstack_commands.proto";
+import "dev/namlit/domain/techstack/v1/techstack.proto";
+
+package dev.namlit.api.write.techstack.v1;
+
+// Mutation API for techstack taxonomy and navigation.
+service TechstackWriteService {
+  rpc CreateTechstackCategory(CreateTechstackCategoryRequest) returns (CreateTechstackCategoryResponse);
+  rpc DeleteTechstackCategory(DeleteTechstackCategoryRequest) returns (DeleteTechstackCategoryResponse);
+
+  rpc CreateTechstackCategoryCollection(CreateTechstackCategoryCollectionRequest) returns (CreateTechstackCategoryCollectionResponse);
+  rpc DeleteTechstackCategoryCollection(DeleteTechstackCategoryCollectionRequest) returns (DeleteTechstackCategoryCollectionResponse);
+
+  rpc CreateTechstackCategoryItem(CreateTechstackCategoryItemRequest) returns (CreateTechstackCategoryItemResponse);
+  rpc UpdateTechstackCategoryItemDescription(UpdateTechstackCategoryItemDescriptionRequest) returns (UpdateTechstackCategoryItemDescriptionResponse);
+  rpc DeleteTechstackCategoryItem(DeleteTechstackCategoryItemRequest) returns (DeleteTechstackCategoryItemResponse);
+
+  rpc CreateTechstackNavigationNode(CreateTechstackNavigationNodeRequest) returns (CreateTechstackNavigationNodeResponse);
+  rpc UpdateTechstackNavigationNodeCategoryId(UpdateTechstackNavigationNodeCategoryIdRequest) returns (UpdateTechstackNavigationNodeCategoryIdResponse);
+  rpc DeleteTechstackNavigationNode(DeleteTechstackNavigationNodeRequest) returns (DeleteTechstackNavigationNodeResponse);
+}
+
+message CreateTechstackCategoryRequest {
+  CreateTechstackCategoryDto category = 1;
+}
+
+message CreateTechstackCategoryResponse {
+  dev.namlit.domain.techstack.v1.TechstackCategoryDto category = 1;
+}
+
+message DeleteTechstackCategoryRequest {
+  // Stable category identifier from TechstackCategoryDto.id.
+  string category_id = 1;
+}
+
+message DeleteTechstackCategoryResponse {}
+
+message CreateTechstackCategoryCollectionRequest {
+  // Parent category identifier.
+  string category_id = 1;
+  CreateTechstackCategoryCollectionDto collection = 2;
+}
+
+message CreateTechstackCategoryCollectionResponse {
+  dev.namlit.domain.techstack.v1.TechstackCategoryCollectionDto collection = 1;
+}
+
+message DeleteTechstackCategoryCollectionRequest {
+  // Stable collection identifier from TechstackCategoryCollectionDto.id.
+  string collection_id = 1;
+}
+
+message DeleteTechstackCategoryCollectionResponse {}
+
+message CreateTechstackCategoryItemRequest {
+  // Parent category identifier.
+  string category_id = 1;
+  // Optional parent collection; omit to create an additional category-level item.
+  optional string collection_id = 2;
+  CreateTechstackCategoryItemDto item = 3;
+}
+
+message CreateTechstackCategoryItemResponse {
+  dev.namlit.domain.techstack.v1.TechstackCategoryItemDto item = 1;
+}
+
+message UpdateTechstackCategoryItemDescriptionRequest {
+  // Stable item identifier from TechstackCategoryItemDto.id.
+  string item_id = 1;
+  UpdateTechstackCategoryItemDescriptionDto update = 2;
+}
+
+message UpdateTechstackCategoryItemDescriptionResponse {
+  dev.namlit.domain.techstack.v1.TechstackCategoryItemDto item = 1;
+}
+
+message DeleteTechstackCategoryItemRequest {
+  // Stable item identifier from TechstackCategoryItemDto.id.
+  string item_id = 1;
+}
+
+message DeleteTechstackCategoryItemResponse {}
+
+message CreateTechstackNavigationNodeRequest {
+  CreateTechstackNavigationNodeDto node = 1;
+}
+
+message CreateTechstackNavigationNodeResponse {
+  dev.namlit.domain.techstack.v1.TechstackNavigationNodeDto node = 1;
+}
+
+message UpdateTechstackNavigationNodeCategoryIdRequest {
+  // Stable navigation node identifier.
+  string node_id = 1;
+  UpdateTechstackNavigationNodeCategoryIdDto update = 2;
+}
+
+message UpdateTechstackNavigationNodeCategoryIdResponse {
+  dev.namlit.domain.techstack.v1.TechstackNavigationNodeDto node = 1;
+}
+
+message DeleteTechstackNavigationNodeRequest {
+  // Stable navigation node identifier.
+  string node_id = 1;
+}
+
+message DeleteTechstackNavigationNodeResponse {}
